@@ -1,0 +1,66 @@
+.errore{
+    height: 50px;
+    background-color: red;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-style: none;
+}
+
+body {
+  --primary-text: #473198;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+}
+
+.toast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 20px;
+  transition: 0.4s ease;
+  color: var(--primary-text);
+  background-color: #b7ffd8;
+  transform: translateY(0px);
+}
+
+.toast__is-hidden {
+  transform: translateY(-100px);
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  min-width: 300px;
+  max-width: 300px;
+  overflow: hidden;
+  position: relative;
+  margin-right: 5px;
+  scroll-snap-align: start;
+}
+
+.card__title_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 -8px 20px 3px black;
+  color: white;
+}
