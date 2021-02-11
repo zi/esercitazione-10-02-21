@@ -1,0 +1,9 @@
+.wrapper__banner {
+    background-color: brown;
+    padding: 20px;
+    color: white;
+}
+
+.banner {
+    display: none;
+}
