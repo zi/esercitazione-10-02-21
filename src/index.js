@@ -1,13 +1,17 @@
 const TOAST = document.querySelector(".toast");
 const POPULAR_MOVIES = document.querySelector("#popularMovies");
+const TOP_RATED_MOVIES = document.querySelector("#topRatedMovies");
+const POPULAR_TV_SERIES = document.querySelector("#popularTvSeries");
 
 const state = {
   config: {
-    api_key: "LA VOSTRA API KEY",
+    api_key: "21d98811ccc06892cfacaa00806100a9",
     base_url: "https://api.themoviedb.org/3",
     images: null
   },
-  movies: null
+  popMovies: null,
+  topRatMovies: null,
+  popTvSeries: null
 };
 
 /**
@@ -75,20 +79,41 @@ async function getConfiguration() {
   return result;
 }
 
-/**
- * ottiene i la lista di film più popolari
- *
- * @link https://developers.themoviedb.org/3/movies/get-popular-movies
- */
+/* ottiene i la lista di film più popolari */
+
 async function getPopularMovies() {
   const popularMoviesURL = getUrl("/movie/popular");
 
   const rawResponse = await getData(popularMoviesURL);
 
-  state.movies = rawResponse.results;
+  state.popMovies = rawResponse.results;
 
   return rawResponse;
-}
+};
+
+/* ottiene la lista dei film più votati */
+
+async function getTopRatedMovies() {
+  const topRatedMoviesURL = getUrl("/movie/top_rated");
+
+  const rawResponse = await getData(topRatedMoviesURL);
+
+  state.topRatMovies = rawResponse.results;
+
+  return rawResponse;
+};
+
+/* ottiene la lista delle serie tv più popolari */
+
+async function getPopularTvSeries() {
+  const popularTvSeriesURL = getUrl("/tv/popular");
+
+  const rawResponse = await getData(popularTvSeriesURL);
+
+  state.popTvSeries = rawResponse.results;
+
+  return rawResponse;
+};
 
 /**
  * gestisce la sessione guest dell'utente
@@ -167,14 +192,14 @@ async function handleSession() {
  * Mostra il toast banner per 4s con il messaggio
  * che gli viene passato come parametro
  */
-function showToast(text) {
+/* function showToast(text) {
   TOAST.textContent = text;
   TOAST.classList.toggle("toast__is-hidden");
 
   setTimeout(() => {
     TOAST.classList.toggle("toast__is-hidden");
   }, 4000);
-}
+} */
 
 /**
  * Crea una card per i film / serie tv
@@ -208,21 +233,24 @@ function renderCarousel(list, sectionNode) {
     // ottiene la url dell'immagine completa
     const imgURL = getImageUrl(item.backdrop_path);
 
-    const movieCard = getMovieCard(imgURL, item.title);
+    const movieCard = getMovieCard(imgURL, item.title || item.name);
 
     sectionNode.appendChild(movieCard);
   });
 }
 
 /**
- * funzione che ottiene i dati dall'eseterno,
+ * funzione che ottiene i dati dall'esterno,
  * e quando li ha ottenuti renderizza il carosello dei film popolari
  */
 function handleHTMLMounted() {
-  Promise.all([handleSession(), getConfiguration(), getPopularMovies()]).then(
-    () => {
+  Promise.all([handleSession(), getConfiguration(), getPopularMovies(), getTopRatedMovies(), getPopularTvSeries()])
+  
+  .then(() => {
       // ci permette di lavorare con i dati ottenuti dall'esterno
-      renderCarousel(state.movies, POPULAR_MOVIES);
+      renderCarousel(state.popMovies, POPULAR_MOVIES);
+      renderCarousel(state.topRatMovies, TOP_RATED_MOVIES);
+      renderCarousel(state.popTvSeries, POPULAR_TV_SERIES);
     }
   );
 }
@@ -233,7 +261,7 @@ function handleHTMLMounted() {
  * esegue la funzione handleHTMLMounted appena l'html del nostro
  * index.html è stato stampato a video
  *
- * rimuove il listenr una volta terminata l'operazione con {once: true}
+ * rimuove il listener una volta terminata l'operazione con {once: true}
  */
 document.addEventListener("DOMContentLoaded", handleHTMLMounted, {
   once: true
