@@ -1,24 +1,41 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
   <head>
-    <title>Corso Edgmenoy</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <title>BruteForce Movies</title>
   </head>
   <body>
-    <div class="toast toast__is-hidden"></div>
+    <header>
+      <nav>
+        <img src="logoNetflix.png" />
+        <i id="iconUser" class="fa fa-user"></i>
+      </nav>
+    </header>
     <main>
-      <section>
-        <h2>Film popolari</h2>
-        <div id="popularMovies" class="carousel"></div>
+      <div class="toast toast__is-hidden"></div>
+      <section class="slideShow">
+        <button class="slideShow__btn-left">&#10094;</button>
+        <img class="mySlides" src="schermata netflix.png" />
+        <img class="mySlides" src="logoNetflix.png" />
+        <button class="slideShow__btn-right">&#10095;</button>
+      </section>
+      <section class="carousel__wrap">
+        <!-- <div class="carousel__wrap--card" id="popular-movies">
+          </div> -->
       </section>
     </main>
-    <script src="src/index.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f7189c48cb.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/assets/src/index.js"></script>
   </body>
 </html>

@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  position: relative;
+  --primary-text: rgb(245, 246, 250);
+}
+/* header{
+    display: flex;
+    height: 200px;
+} */
+header nav {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-sizing: border-box;
+}
+header nav img {
+  height: 80%;
+  min-width: 300px;
+  max-width: 450px;
+}
+
+header nav i {
+  font-size: 35px;
+  color: var(--primary-text);
+  cursor: pointer;
+  margin-right: 100px;
+  background-color: transparent;
+  padding: 0px;
+}
+header nav i:hover {
+  color: rgba(255, 174, 0, 0.87);
+  transform: scale(1.2);
+}
+
+.toast {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 20px;
+  transition: 0.4s ease;
+  color: red;
+  background-color: rgba(245, 246, 250, 0.8);
+  transform: translateY(0px);
+  font-size: 1.4rem;
+  text-align: center;
+  font-family: "Hammersmith One", sans-serif;
+  border-end-end-radius: 10px;
+}
+
+.toast__is-hidden {
+  transform: translateY(-100px);
+}
+
+.slideShow {
+  display: flex;
+  margin: 50px 15%;
+  width: 70%;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 -8px 20px 3px whitesmoke;
+  box-sizing: border-box;
+}
+
+.slideShow button {
+  margin: 0px;
+  background-color: transparent;
+  outline: none;
+  color: whitesmoke;
+  border: none;
+  height: 15%;
+  position: absolute;
+  font-size: 45px;
+  cursor: pointer;
+}
+.slideShow button:hover {
+  color: red;
+}
+.slideShow__btn-left {
+  top: 40%;
+  left: 0%;
+}
+.slideShow__btn-right {
+  top: 40%;
+  right: 0%;
+}
+.slideShow img {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel__wrap {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  justify-content: center;
+  scroll-snap-type: x mandatory;
+  position: relative;
+}
+.carousel__wrap h4 {
+  color: whitesmoke;
+  position: relative;
+  font-size: 1.7rem;
+  left: 4%;
+  top: 0;
+  font-family: "Hammersmith One", sans-serif;
+  margin-bottom: 0;
+}
+.carousel__wrap--card {
+  margin: 20px 40px;
+  display: flex;
+  max-height: 350px;
+  box-shadow: 0 -8px 10px 0px whitesmoke;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 50px;
+  position:relative;
+}
+.carousel__wrap--card-vote{
+    position: relative;
+    color:gray;
+    font-size:25px;
+    display: inline;
+    background-color: gold;
+    opacity: 0.7;
+    top:-50px;
+    left: 72px;
+    bottom: 0px;
+    padding:1px;
+    border-radius: 4px;
+}
+
+.card {
+  min-width: 180px;
+  max-width: 300px;
+  overflow: hidden;
+  position: relative;
+  margin-right: 6px;
+  scroll-snap-align: start;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-15px);
+  transition: all 250ms ease-in-out;
+}
+
+.card__title_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 -8px 20px 3px black;
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: rgba(36, 36, 36, 0.8);
+}
+
+.slideShow img.show  {
+    animation: show .5s;
+    animation-fill-mode: both;
+}
+/* @keyframes show {
+    from {
+        transform:scale(0.7);
+        opacity:0
+    }
+    to {
+        transform: scale(1);
+        opacity:1
+    }
+}
+
+.slideShow img.hide  {
+    animation: hide .5s;
+    animation-fill-mode: both;
+}
+@keyframes hide {
+    from {
+        transform:scale(1);
+        opacity:1
+    }
+    to {
+        transform:scale(0.7);
+        opacity:0
+    }
+} */
