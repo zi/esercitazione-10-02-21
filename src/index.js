@@ -1,5 +1,6 @@
 const TOAST = document.querySelector(".toast");
 const POPULAR_MOVIES = document.querySelector("#popularMovies");
+const TOP_RATED_MOVIES = document.querySelector("#topRatedMovies");
 
 const state = {
   config: {
