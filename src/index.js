@@ -1,13 +1,19 @@
 const TOAST = document.querySelector(".toast");
 const POPULAR_MOVIES = document.querySelector("#popularMovies");
+const TOP_RATED = document.querySelector("#topRated");
+const TV_POPULAR_MOVIES = document.querySelector("#TVpopularMovies");
+const TV_TOP_RATED = document.querySelector("#TVtopRated");
 
 const state = {
   config: {
-    api_key: "LA VOSTRA API KEY",
+    api_key: "040e5de3d64b739194b16c6ab0f6ea06",
     base_url: "https://api.themoviedb.org/3",
-    images: null
+    images: null,
   },
-  movies: null
+  movies: null,
+  topRated : null,
+  TVmovies: null,
+  TVtopRated : null,
 };
 
 /**
@@ -90,6 +96,36 @@ async function getPopularMovies() {
   return rawResponse;
 }
 
+async function getTopRated() {
+  const TopRatedURL = getUrl("/movie/top_rated");
+
+  const rawResponse = await getData(TopRatedURL);
+
+  state.topRated = rawResponse.results;
+
+  return rawResponse;
+}
+
+async function getTVPopularMovies() {
+  const TVpopularMoviesURL = getUrl("/tv/popular");
+
+  const rawResponse = await getData(TVpopularMoviesURL);
+
+  state.TVmovies = rawResponse.results;
+
+  return rawResponse;
+}
+
+async function getTVTopRated() {
+  const TVTopRatedURL = getUrl("/tv/top_rated");
+
+  const rawResponse = await getData(TVTopRatedURL);
+
+  state.TVtopRated = rawResponse.results;
+  
+  return rawResponse;
+}
+
 /**
  * gestisce la sessione guest dell'utente
  *
@@ -133,7 +169,7 @@ async function handleSession() {
     /**
      * controlliamo che la sessione non sia scacduta
      *
-     * la data di scadenza della sessione è contenuta
+     * la data di scadenza della sessione è centenuta
      * nell'oggetta della sessione sotto il nome "expires_at"
      *
      * utilizziamo Date per verificare se la data di scadenza è inferiore
@@ -154,7 +190,7 @@ async function handleSession() {
       localStorage.removeItem("mdb_session");
 
       // chiamiamo la funzione stessa per gestire la
-      // creazione di una nuova sessione e l'inserimento nel localStorage
+      // creazione di una nuova sessione e l'inseirmento nel localStorage
       await handleSession();
 
       return true;
@@ -190,8 +226,14 @@ function getMovieCard(imgURL, title) {
   textWrap.classList.add("card__title_wrap");
 
   text.textContent = title;
-  coverImg.src = imgURL;
-
+  
+  if (imgURL === "") {
+    //coverImg.src = imgURL;
+    coverImg.alt = "Immagine non presente"
+  } else {
+    coverImg.src = imgURL;
+  }
+  
   textWrap.appendChild(text);
   cardWrap.append(coverImg, textWrap);
 
@@ -203,6 +245,7 @@ function getMovieCard(imgURL, title) {
  * e li appende dentro il nodo parent passato come secondo parametro
  * "sectionNode"
  */
+
 function renderCarousel(list, sectionNode) {
   list.forEach((item) => {
     // ottiene la url dell'immagine completa
@@ -214,17 +257,36 @@ function renderCarousel(list, sectionNode) {
   });
 }
 
+function renderCarouselTV(list, sectionNode) {
+  list.forEach((item) => {
+    // ottiene la url dell'immagine completa
+    let imgURL 
+
+    if (item.backdrop_path) {
+      imgURL = getImageUrl(item.backdrop_path);
+    } else {
+      imgURL = "" // getImageUrl(item.poster_path);
+    }
+    
+    const movieCard = getMovieCard(imgURL, item.name);
+
+    sectionNode.appendChild(movieCard);
+  });
+}
+
 /**
  * funzione che ottiene i dati dall'eseterno,
  * e quando li ha ottenuti renderizza il carosello dei film popolari
  */
 function handleHTMLMounted() {
-  Promise.all([handleSession(), getConfiguration(), getPopularMovies()]).then(
-    () => {
+  Promise.all([handleSession(), getConfiguration(), getPopularMovies(), getTopRated(), getTVPopularMovies(), getTVTopRated()]).then(() => {
       // ci permette di lavorare con i dati ottenuti dall'esterno
       renderCarousel(state.movies, POPULAR_MOVIES);
-    }
-  );
+      renderCarousel(state.topRated, TOP_RATED);
+      renderCarouselTV(state.TVmovies, TV_POPULAR_MOVIES);
+      renderCarouselTV(state.TVtopRated, TV_TOP_RATED);
+      
+    });
 }
 
 /**
@@ -235,6 +297,4 @@ function handleHTMLMounted() {
  *
  * rimuove il listenr una volta terminata l'operazione con {once: true}
  */
-document.addEventListener("DOMContentLoaded", handleHTMLMounted, {
-  once: true
-});
+document.addEventListener("DOMContentLoaded", handleHTMLMounted, {once: true});
