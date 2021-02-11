@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  border-style: none;
+}
+
+body {
+  --primary-text: #473198;
+  font-family: "Roboto", sans-serif;
+  position: relative;
+  color: white;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.header h1{
+  text-align: center;
+  margin: 30px auto;
+}
+
+.section__movies{
+  margin-top: 75px;
+  margin-left: 30px;
+}
+
+.section__movies h2{
+  font-size: 1.8rem;
+}
+
+.carousel {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  min-width: 300px;
+  max-width: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: 15px;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.card__title_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: rgba(40, 40, 40, 0.571);
+  box-shadow: 0 0px 200px 0px rgb(60, 60, 60);
+  text-align: center;
+}
