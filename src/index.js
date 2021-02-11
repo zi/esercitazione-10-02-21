@@ -3,11 +3,12 @@ const POPULAR_MOVIES = document.querySelector("#popularMovies");
 
 const state = {
   config: {
-    api_key: "LA VOSTRA API KEY",
+    api_key: "f77033c1d0b6830581c0191d91ecddb7",
     base_url: "https://api.themoviedb.org/3",
     images: null
   },
-  movies: null
+  popular_movies: null,
+  top_rated:null,
 };
 
 /**
@@ -89,7 +90,18 @@ async function getPopularMovies() {
 
   return rawResponse;
 }
+/* 
+  ottiene la lista dei film più votati
+*/
+async function getTopRatedMovies() {
+  const topRatedURL = getUrl("/movie/top_rated");
 
+  const rawResponse = await getData(topRatedURL);
+
+  state.top_rated = rawResponse.results;
+
+  return rawResponse;
+}
 /**
  * gestisce la sessione guest dell'utente
  *
@@ -219,10 +231,11 @@ function renderCarousel(list, sectionNode) {
  * e quando li ha ottenuti renderizza il carosello dei film popolari
  */
 function handleHTMLMounted() {
-  Promise.all([handleSession(), getConfiguration(), getPopularMovies()]).then(
+  Promise.all([handleSession(), getConfiguration(), getPopularMovies(), getTopRatedMovies()]).then(
     () => {
       // ci permette di lavorare con i dati ottenuti dall'esterno
       renderCarousel(state.movies, POPULAR_MOVIES);
+      renderCarousel(state.top_rated, TOP_RATED_MOVIES);
     }
   );
 }
