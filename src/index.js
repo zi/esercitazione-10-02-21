@@ -1,6 +1,7 @@
 const TOAST = document.querySelector(".toast");
 const POPULAR_MOVIES = document.querySelector("#popularMovies");
 const TOP_RATED_MOVIES = document.querySelector("#topRatedMovies");
+const TV_POPULAR = document.querySelector("#popularTv");
 
 const state = {
   config: {
@@ -10,6 +11,7 @@ const state = {
   },
   popular_movies: null,
   top_rated:null,
+  tv_popular:null
 };
 
 /**
@@ -101,6 +103,20 @@ async function getTopRatedMovies() {
 
   state.top_rated = rawResponse.results;
 
+  return rawResponse;
+}
+
+/* 
+  ottiene la lista delle serie più popolari
+  
+*/
+
+async function getTopPopularTv() {
+  const topRatedURL = getUrl("/tv/popular");
+
+  const rawResponse = await getData(topRatedURL);
+
+  state.tv_popular = rawResponse.results;
   return rawResponse;
 }
 /**
@@ -221,7 +237,7 @@ function renderCarousel(list, sectionNode) {
     // ottiene la url dell'immagine completa
     const imgURL = getImageUrl(item.backdrop_path);
 
-    const movieCard = getMovieCard(imgURL, item.title);
+    const movieCard = getMovieCard(imgURL, item.title || item.name);
 
     sectionNode.appendChild(movieCard);
   });
@@ -232,11 +248,13 @@ function renderCarousel(list, sectionNode) {
  * e quando li ha ottenuti renderizza il carosello dei film popolari
  */
 function handleHTMLMounted() {
-  Promise.all([handleSession(), getConfiguration(), getPopularMovies(), getTopRatedMovies()]).then(
+  Promise.all([handleSession(), getConfiguration(), getPopularMovies(), getTopRatedMovies(), getTopPopularTv()]).then(
     () => {
       // ci permette di lavorare con i dati ottenuti dall'esterno
       renderCarousel(state.movies, POPULAR_MOVIES);
       renderCarousel(state.top_rated, TOP_RATED_MOVIES);
+      renderCarousel(state.tv_popular, TV_POPULAR );
+
     }
   );
 }
