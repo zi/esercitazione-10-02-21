@@ -1,24 +1,112 @@
+<!--
+  1. Sistemare il login e aggiungere il relativo btn
+  2. Aggiungere pagina della watchlist e un relativo 'btn href to it'
+-->
+
 <!DOCTYPE html>
-<html lang="it">
-  <head>
-    <title>Corso Edgmenoy</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style/style.css" />
-  </head>
-  <body>
-    <div class="toast toast__is-hidden"></div>
-    <main>
-      <section>
-        <h2>Film popolari</h2>
-        <div id="popularMovies" class="carousel"></div>
-      </section>
-    </main>
-    <script src="src/index.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esercitazione 05-02-2021</title>
+  <link rel="stylesheet" href="./styles/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="navbar__logoIcon">
+        <img src="./img/prime.png" alt="logo-prime-video">
+      </div>
+      <div class="navbar__links">
+        <ul>
+          <li class="getUserPermissionBtn">Get permissions</li>
+          <li class="getUserValidSessionID">Get session ID</li>
+          <li class="goToWatchlist" id="goToWatchlist">Watchlist</li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <div class="mostPopular">
+      <div class="mostPopular__header">
+        <img src="https://m.media-amazon.com/images/G/01/digital/video/global/prime-logo-large-v4._CB509553088_.png" alt="">
+        <h3>I film più popolari</h3>
+      </div>
+      <div class="caroselloBtn">
+        <div class="caroselloBtn__buttonRight"><h6> < </h6></div>
+        <div class="caroselloBtn__buttonLeft"><h6> > </h6></div>
+      </div>
+      <div class="wrapperList wrapperPopMovies"></div>
+    </div>
+    <div class="mostPopular">
+      <div class="mostPopular__header">
+        <img src="https://m.media-amazon.com/images/G/01/digital/video/global/prime-logo-large-v4._CB509553088_.png" alt="">
+        <h3>Le serie Tv più guardate</h3>
+      </div>      
+      <div class="caroselloBtn">
+        <div class="caroselloBtn__buttonRight"><h6> < </h6></div>
+        <div class="caroselloBtn__buttonLeft"><h6> > </h6></div>
+      </div>
+      <div class="wrapperList wrapperPopTv"></div>
+    </div>
+    <div class="mostPopular">
+      <div class="mostPopular__header">
+        <img src="https://m.media-amazon.com/images/G/01/digital/video/global/prime-logo-large-v4._CB509553088_.png" alt="">
+        <h3>I film preferiti in assoluto</h3>
+      </div>      
+      <div class="caroselloBtn">
+        <div class="caroselloBtn__buttonRight"><h6> < </h6></div>
+        <div class="caroselloBtn__buttonLeft"><h6> > </h6></div>
+      </div>
+      <div class="wrapperList wrapperTopMovies"></div>
+    </div>
+    <div class="mostPopular">
+      <div class="mostPopular__header">
+        <img src="https://m.media-amazon.com/images/G/01/digital/video/global/prime-logo-large-v4._CB509553088_.png" alt="">
+        <h3>Le serie Tv più apprezzate</h3>
+      </div>
+      <div class="caroselloBtn">
+        <div class="caroselloBtn__buttonRight"><h6> < </h6></div>
+        <div class="caroselloBtn__buttonLeft"><h6> > </h6></div>
+      </div>
+      <div class="wrapperList wrapperTopSeries"></div>
+    </div>
+
+    <div class="watchlist">
+      <h2 class="watchlist__header">Watchlist</h2>
+      <div class="caroselloBtn">
+        <div class="caroselloBtn__buttonRight"><h6> < </h6></div>
+        <div class="caroselloBtn__buttonLeft"><h6> > </h6></div>
+      </div>
+      <div class="watchlist__wrapper wrapperList">
+      </div>
+    </div>
+
+  </main>
+  <footer>
+    <img src="./img/prime.png" alt="prime-video-logo">
+    <div class="footer__links">
+      <a href="https://www.primevideo.com/ww-av-legal-home/ref=atv_ftr_ter">
+        Termini di utilizzo e informativa sulla privacy
+      </a>
+      <a href="https://www.primevideo.com/contactus/ref=atv_ftr_cu">
+        Invia commenti
+      </a>
+      <a href="https://www.primevideo.com/help/ref=atv_ftr_hp">
+        Aiuto
+      </a>
+    </div>
+    <div class="footer__copy">
+      <p>© 2021 Casi, replica likes Amazon Prime Video.</p>
+    </div>
+  </footer>
+
+  <!-- Added to the WatchList Modal -->
+  <div class="watchListModal"></div>
+  
+  <script src="./main.js" type="module"></script>
+  <script src="./card.js" type="module"></script>
+</body>
 </html>

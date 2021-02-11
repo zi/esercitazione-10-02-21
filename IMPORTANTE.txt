@@ -1,0 +1,6 @@
+Potrebbe sollevarsi un problema di tipo CORS, questo perchè ho utilizzato modules (ES6) per importare un 'card.js'.
+Purtroppo ci sono conflitti e Chrome solleva questo problema. Soluzioni per risolvere:
+
+1: Spostare la funzione contenuta in 'card.js' all'interno del 'main.js' e rimuovere dunque l'import nel file html
+
+2: Lanciare tutta la directory in un server (anche simulato chiaramente, ad es. live-server su Visual Studio Code)
