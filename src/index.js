@@ -194,3 +194,85 @@ function content() {
   });
 }
 document.addEventListener("DOMContentLoaded", content, { once: true });
+
+// btn //
+let scrollStep = 600;
+
+document
+  .querySelector(".TopRatedRight")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let sl = TopRatedMoviesWrapper.scrollLeft,
+      cw = TopRatedMoviesWrapper.scrollWidth;
+
+    if (sl + scrollStep >= cw) {
+      TopRatedMoviesWrapper.scrollTo(cw, 0);
+    } else {
+      TopRatedMoviesWrapper.scrollTo(sl + scrollStep, 0);
+    }
+  });
+
+document.querySelector(".TopRatedLeft").addEventListener("click", function (e) {
+  e.preventDefault();
+  let sl = TopRatedMoviesWrapper.scrollLeft;
+
+  if (sl - scrollStep <= 0) {
+    TopRatedMoviesWrapper.scrollTo(0, 0);
+  } else {
+    TopRatedMoviesWrapper.scrollTo(sl - scrollStep, 0);
+  }
+});
+
+document
+  .querySelector(".popularMoviesRight")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let sl = popularMoviesWrapper.scrollLeft,
+      cw = popularMoviesWrapper.scrollWidth;
+
+    if (sl + scrollStep >= cw) {
+      popularMoviesWrapper.scrollTo(cw, 0);
+    } else {
+      popularMoviesWrapper.scrollTo(sl + scrollStep, 0);
+    }
+  });
+
+document
+  .querySelector(".popularMoviesLeft")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let sl = popularMoviesWrapper.scrollLeft;
+
+    if (sl - scrollStep <= 0) {
+      popularMoviesWrapper.scrollTo(0, 0);
+    } else {
+      popularMoviesWrapper.scrollTo(sl - scrollStep, 0);
+    }
+  });
+
+document
+  .querySelector(".popularTVRight")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let sl = popularTvShows.scrollLeft,
+      cw = popularTvShows.scrollWidth;
+
+    if (sl + scrollStep >= cw) {
+      popularTvShows.scrollTo(cw, 0);
+    } else {
+      popularTvShows.scrollTo(sl + scrollStep, 0);
+    }
+  });
+
+document
+  .querySelector(".popularTVLeft")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    let sl = popularTvShows.scrollLeft;
+
+    if (sl - scrollStep <= 0) {
+      popularTvShows.scrollTo(0, 0);
+    } else {
+      popularTvShows.scrollTo(sl - scrollStep, 0);
+    }
+  });

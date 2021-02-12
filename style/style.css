@@ -76,6 +76,11 @@ header {
   margin-left: 5px;
 }
 
+/* btn */
+.btn {
+  display: none;
+}
+
 /* cards */
 .list {
   display: flex;
