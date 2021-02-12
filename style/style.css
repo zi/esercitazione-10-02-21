@@ -1,0 +1,96 @@
+body {
+  --dark-color: #132236;
+  --light-color: #dce7ed;
+  --main-color: #2c58b4;
+  --light-accent: #56b1db;
+  background-color: var(--dark-color);
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: var(--light-color);
+}
+
+/**** MAIN ****/
+
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.sessionTitle {
+  color: var(--light-color);
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+/* cards */
+.list {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
+
+.card_body {
+  position: relative;
+  border-radius: 4px;
+  height: 230px;
+  min-width: 153px;
+  max-width: 153px;
+  margin: 0 5px 20px 5px;
+  background-color: #132236;
+  transition: all 0.2s ease-in-out;
+}
+
+.card_body img {
+  mix-blend-mode: lighten;
+  min-height: 230px;
+  max-height: 230px;
+  border-radius: 4px;
+}
+
+.card_textWrapper {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 230px;
+  height: 230px;
+  box-sizing: border-box;
+  padding: 0 10px 5px 10px;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  border: 2px solid var(--main-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.card_body:hover .card_textWrapper {
+  visibility: visible;
+  opacity: 1;
+}
+
+.card_title {
+  height: 30px;
+  overflow: hidden;
+  text-align: center;
+  color: var(--light-accent);
+}
+
+.card_text {
+  height: 170px;
+  overflow: hidden;
+  text-align: justify;
+  font-size: 0.8rem;
+}
