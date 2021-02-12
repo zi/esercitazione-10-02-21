@@ -198,6 +198,19 @@ header {
 }
 
 @media (min-width: 1200px) {
+  .navbar__logo {
+    margin-left: 15px;
+  }
+  .navbar__links li {
+    margin-right: 15px;
+  }
+  .navbar__links li a {
+    color: #dce7eda8;
+  }
+  .navbar__links li a:hover {
+    color: var(--light-color);
+    text-shadow: 0 0 8px var(--light-color);
+  }
   .sessionTitle {
     margin-left: 15px;
   }
