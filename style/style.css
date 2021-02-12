@@ -196,3 +196,39 @@ header {
   color: var(--light-color);
   font-size: 0.8rem;
 }
+
+@media (min-width: 1200px) {
+  .sessionTitle {
+    margin-left: 15px;
+  }
+  .list {
+    display: flex;
+    overflow-x: hidden;
+  }
+
+  .btn {
+    display: block;
+    margin: 0 5px 20px 5px;
+    font-size: 4rem;
+    min-width: 50px;
+    height: 230px;
+    padding: 5px;
+    color: #192d468e;
+  }
+  #right-button {
+    margin-right: 0;
+    background: linear-gradient(
+      270deg,
+      rgba(13, 24, 38, 1) 0%,
+      rgba(19, 34, 54, 0) 100%
+    );
+  }
+  #left-button {
+    margin-left: 0;
+    background: linear-gradient(
+      90deg,
+      rgb(15, 28, 44) 0%,
+      rgba(19, 34, 54, 0) 100%
+    );
+  }
+}
