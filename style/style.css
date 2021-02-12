@@ -133,3 +133,25 @@ header {
   text-align: justify;
   font-size: 0.8rem;
 }
+
+/**** FOOTER ****/
+.footer_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+}
+.footer_logo {
+  height: 50px;
+}
+.footer_logo,
+.footer_list {
+  margin: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.footer_list li a {
+  color: var(--light-color);
+  font-size: 0.8rem;
+}
