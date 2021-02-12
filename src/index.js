@@ -1,3 +1,8 @@
+const main = document.querySelector("main");
+
+const btnCookie = document.createElement("button");
+const bannerCookie = document.querySelector("#banner_cookie");
+
 const list = document.querySelector(".list");
 const TopRatedMoviesWrapper = document.querySelector(".topRated_movies");
 const popularMoviesWrapper = document.querySelector(".popular_movies");
@@ -40,6 +45,28 @@ async function getData(link) {
     return result;
   } catch (err) {
     console.log(err);
+  }
+}
+
+// cookie //
+function cookie() {
+  const cookie = localStorage.getItem("cookie");
+
+  if (!cookie) {
+    const bannerCookie = document.querySelector("#banner_cookie");
+    const textCookie = document.createElement("p");
+    bannerCookie.classList.add("banner_cookie");
+    textCookie.classList.add("text_cookie");
+    btnCookie.classList.add("btn_cookie");
+    textCookie.innerText = `Utilizziamo i cookies per una migliore esperienza su TMDb. Continuando ad utilizzare TMDB si
+    accettano i termini della nostra cookie policy.`;
+    btnCookie.textContent = `OK`;
+    bannerCookie.append(textCookie, btnCookie);
+
+    btnCookie.addEventListener("click", (e) => {
+      localStorage.setItem("cookie", "ok");
+      main.removeChild(bannerCookie);
+    });
   }
 }
 
@@ -163,6 +190,7 @@ function content() {
   ]).then(() => {
     console.log(state);
     renderCard();
+    cookie();
   });
 }
 document.addEventListener("DOMContentLoaded", content, { once: true });
