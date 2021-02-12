@@ -14,6 +14,45 @@ a:visited {
   color: var(--light-color);
 }
 
+/**** HEADER ****/
+
+/* navbar */
+header {
+  position: relative;
+  padding: 30px;
+}
+
+.navbar {
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  background-color: var(--main-color);
+  box-shadow: 4px 0 7px #000000;
+  align-items: center;
+}
+.navbar__logo {
+  height: 20px;
+  margin: 5px;
+}
+
+.navbar__links {
+  display: flex;
+  position: absolute;
+  right: 0;
+  padding: 0;
+  list-style: none;
+  text-transform: uppercase;
+}
+.navbar__links li a {
+  margin: 5px;
+  color: var(--light-color);
+}
+
 /**** MAIN ****/
 
 .wrapper {
